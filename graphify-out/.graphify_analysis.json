@@ -1,0 +1,193 @@
+{
+  "communities": {
+    "0": [
+      "app",
+      "app_format_currency",
+      "app_load_data",
+      "app_main",
+      "app_rationale_1",
+      "app_rationale_29",
+      "src_forecast",
+      "src_forecast_gdpforecaster",
+      "src_forecast_gdpforecaster_forecast",
+      "src_forecast_gdpforecaster_init",
+      "src_forecast_gdpforecaster_run",
+      "src_forecast_py_dataframe",
+      "src_forecast_rationale_1",
+      "src_forecast_rationale_127",
+      "src_forecast_rationale_15",
+      "src_forecast_rationale_18",
+      "src_forecast_rationale_28"
+    ],
+    "1": [
+      "database_db_connection_databaseconnection",
+      "database_db_connection_databaseconnection_get_engine",
+      "database_db_connection_databaseconnection_test_connection",
+      "database_db_connection_rationale_13",
+      "database_db_connection_rationale_19",
+      "database_db_connection_rationale_43",
+      "engine",
+      "src_load_database_databaseloader",
+      "src_load_database_databaseloader_init",
+      "src_load_database_databaseloader_load_data",
+      "src_load_database_rationale_21",
+      "src_load_database_rationale_28"
+    ],
+    "2": [
+      "src_extract_data_gdpdataextractor",
+      "src_extract_data_gdpdataextractor_fetch_data",
+      "src_extract_data_gdpdataextractor_init",
+      "src_extract_data_gdpdataextractor_process_data",
+      "src_extract_data_gdpdataextractor_run",
+      "src_extract_data_py_dataframe",
+      "src_extract_data_rationale_14",
+      "src_extract_data_rationale_17",
+      "src_extract_data_rationale_22",
+      "src_extract_data_rationale_49",
+      "src_extract_data_rationale_85"
+    ],
+    "3": [
+      "src_preprocess",
+      "src_preprocess_gdppreprocessor",
+      "src_preprocess_gdppreprocessor_init",
+      "src_preprocess_gdppreprocessor_preprocess",
+      "src_preprocess_gdppreprocessor_run",
+      "src_preprocess_py_dataframe",
+      "src_preprocess_rationale_1",
+      "src_preprocess_rationale_14",
+      "src_preprocess_rationale_17",
+      "src_preprocess_rationale_22",
+      "src_preprocess_rationale_67"
+    ],
+    "4": [
+      "config",
+      "database_db_connection",
+      "database_db_connection_rationale_1",
+      "src_eda",
+      "src_eda_rationale_1",
+      "src_extract_data",
+      "src_extract_data_rationale_1",
+      "src_load_database",
+      "src_load_database_rationale_1"
+    ],
+    "5": [
+      "src_train_model",
+      "src_train_model_modeltrainer",
+      "src_train_model_modeltrainer_init",
+      "src_train_model_modeltrainer_train",
+      "src_train_model_rationale_1",
+      "src_train_model_rationale_17",
+      "src_train_model_rationale_20",
+      "src_train_model_rationale_24"
+    ],
+    "6": [
+      "src_eda_edagenerator",
+      "src_eda_edagenerator_generate_eda",
+      "src_eda_edagenerator_init",
+      "src_eda_rationale_14",
+      "src_eda_rationale_22"
+    ],
+    "7": [
+      "database_init",
+      "database_init_rationale_1"
+    ],
+    "8": [
+      "src_init",
+      "src_init_rationale_1"
+    ]
+  },
+  "cohesion": {
+    "0": 0.15441176470588236,
+    "1": 0.19696969696969696,
+    "2": 0.21818181818181817,
+    "3": 0.2,
+    "4": 0.25,
+    "5": 0.25,
+    "6": 0.4,
+    "7": 1.0,
+    "8": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_forecast_gdpforecaster",
+      "label": "GDPForecaster",
+      "degree": 7
+    },
+    {
+      "id": "database_db_connection_databaseconnection",
+      "label": "DatabaseConnection",
+      "degree": 6
+    },
+    {
+      "id": "src_extract_data_gdpdataextractor",
+      "label": "GDPDataExtractor",
+      "degree": 6
+    },
+    {
+      "id": "src_load_database_databaseloader",
+      "label": "DatabaseLoader",
+      "degree": 5
+    },
+    {
+      "id": "src_preprocess_gdppreprocessor",
+      "label": "GDPPreprocessor",
+      "degree": 5
+    },
+    {
+      "id": "app_main",
+      "label": "main()",
+      "degree": 4
+    },
+    {
+      "id": "src_eda_edagenerator",
+      "label": "EDAGenerator",
+      "degree": 4
+    },
+    {
+      "id": "src_train_model_modeltrainer",
+      "label": "ModelTrainer",
+      "degree": 4
+    },
+    {
+      "id": "app_load_data",
+      "label": "load_data()",
+      "degree": 3
+    },
+    {
+      "id": "app_format_currency",
+      "label": "format_currency()",
+      "degree": 2
+    }
+  ],
+  "surprises": [
+    {
+      "source": "DatabaseLoader",
+      "target": "DatabaseConnection",
+      "source_files": [
+        "src/load_database.py",
+        "database/db_connection.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "main()",
+      "target": "GDPForecaster",
+      "source_files": [
+        "app.py",
+        "src/forecast.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `GDPDataExtractor` connect `Community 2` to `Community 4`?",
+      "why": "High betweenness centrality (0.227) - this node is a cross-community bridge."
+    }
+  ]
+}
