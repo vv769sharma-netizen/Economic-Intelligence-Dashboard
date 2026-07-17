@@ -1,0 +1,23 @@
+# Environments
+venv/
+env/
+.env
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data (Don't commit large datasets to GitHub)
+data/raw/*.csv
+data/processed/*.csv
+
+# Models
+models/*.pkl
+
+# Charts (Optional: ignore generated reports if they are large)
+reports/charts/*.html
+
+# OS generated files
+.DS_Store
+Thumbs.db
