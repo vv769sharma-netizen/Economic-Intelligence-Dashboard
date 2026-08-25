@@ -14,6 +14,10 @@ DB_PASSWORD = os.environ.get("DB_PASSWORD", "")
 # World Bank API Configuration
 WORLD_BANK_API_URL = "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json&per_page=20000"
 
+# NewsAPI Configuration
+# Get a free API key at https://newsapi.org/register (100 requests/day on free tier)
+NEWS_API_KEY = os.environ.get("NEWS_API_KEY", "")
+
 # Directories to auto-create
 DIRECTORIES = [
     BASE_DIR / "data" / "raw",
