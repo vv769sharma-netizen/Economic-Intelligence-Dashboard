@@ -1,13 +1,13 @@
 {
   "app.py": {
-    "mtime": 1783931298.909577,
-    "ast_hash": "d5bf94702c9460b2dd4b6f300db568d9",
-    "semantic_hash": "d5bf94702c9460b2dd4b6f300db568d9"
+    "mtime": 1787163362.0907414,
+    "ast_hash": "4396d46eeda52e2e64584d2fe4c92a94",
+    "semantic_hash": "4396d46eeda52e2e64584d2fe4c92a94"
   },
   "config.py": {
-    "mtime": 1783930865.0144155,
-    "ast_hash": "93921e021da39bed6bfe9949473eb74e",
-    "semantic_hash": "93921e021da39bed6bfe9949473eb74e"
+    "mtime": 1787162877.5824473,
+    "ast_hash": "01387722b38624fa8b73520efb7b369c",
+    "semantic_hash": "01387722b38624fa8b73520efb7b369c"
   },
   "database/__init__.py": {
     "mtime": 1783930895.1660233,
@@ -58,5 +58,10 @@
     "mtime": 1783945341.630934,
     "ast_hash": "57b9feb74550ef17475ff0240ddad319",
     "semantic_hash": "57b9feb74550ef17475ff0240ddad319"
+  },
+  "src/news_fetcher.py": {
+    "mtime": 1787162895.2926297,
+    "ast_hash": "81e7fa5985cd7888600b3b0b74676b9e",
+    "semantic_hash": "81e7fa5985cd7888600b3b0b74676b9e"
   }
 }

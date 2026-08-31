@@ -15,8 +15,22 @@ DB_PASSWORD = os.environ.get("DB_PASSWORD", "")
 WORLD_BANK_API_URL = "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json&per_page=20000"
 
 # NewsAPI Configuration
-# Get a free API key at https://newsapi.org/register (100 requests/day on free tier)
-NEWS_API_KEY = os.environ.get("NEWS_API_KEY", "")
+# On Streamlit Cloud: set NEWS_API_KEY in App Settings > Secrets
+# Locally: set the NEWS_API_KEY environment variable or use a .env file
+def _get_news_api_key() -> str:
+    """Read the NewsAPI key from Streamlit secrets (Cloud) or env vars (local)."""
+    # Try Streamlit secrets first (works on Streamlit Cloud)
+    try:
+        import streamlit as st
+        key = st.secrets.get("NEWS_API_KEY", "")
+        if key:
+            return key
+    except Exception:
+        pass
+    # Fall back to environment variable (works locally)
+    return os.environ.get("NEWS_API_KEY", "")
+
+NEWS_API_KEY = _get_news_api_key()
 
 # Directories to auto-create
 DIRECTORIES = [

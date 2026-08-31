@@ -2,22 +2,23 @@
   "communities": {
     "0": [
       "app",
+      "app_fetch_country_news",
+      "app_fetch_global_news",
       "app_format_currency",
+      "app_format_date",
       "app_load_data",
       "app_main",
       "app_rationale_1",
-      "app_rationale_29",
-      "src_forecast",
-      "src_forecast_gdpforecaster",
-      "src_forecast_gdpforecaster_forecast",
-      "src_forecast_gdpforecaster_init",
-      "src_forecast_gdpforecaster_run",
-      "src_forecast_py_dataframe",
-      "src_forecast_rationale_1",
-      "src_forecast_rationale_127",
-      "src_forecast_rationale_15",
-      "src_forecast_rationale_18",
-      "src_forecast_rationale_28"
+      "app_rationale_112",
+      "app_rationale_121",
+      "app_rationale_149",
+      "app_rationale_159",
+      "app_rationale_166",
+      "app_rationale_176",
+      "app_rationale_230",
+      "app_rationale_98",
+      "app_render_news_card",
+      "app_render_news_section"
     ],
     "1": [
       "database_db_connection_databaseconnection",
@@ -34,6 +35,20 @@
       "src_load_database_rationale_28"
     ],
     "2": [
+      "src_news_fetcher",
+      "src_news_fetcher_newsfetcher",
+      "src_news_fetcher_newsfetcher_fetch_country_news",
+      "src_news_fetcher_newsfetcher_fetch_global_economic_news",
+      "src_news_fetcher_newsfetcher_init",
+      "src_news_fetcher_newsfetcher_is_configured",
+      "src_news_fetcher_rationale_1",
+      "src_news_fetcher_rationale_21",
+      "src_news_fetcher_rationale_24",
+      "src_news_fetcher_rationale_34",
+      "src_news_fetcher_rationale_38",
+      "src_news_fetcher_rationale_78"
+    ],
+    "3": [
       "src_extract_data_gdpdataextractor",
       "src_extract_data_gdpdataextractor_fetch_data",
       "src_extract_data_gdpdataextractor_init",
@@ -46,7 +61,20 @@
       "src_extract_data_rationale_49",
       "src_extract_data_rationale_85"
     ],
-    "3": [
+    "4": [
+      "src_forecast",
+      "src_forecast_gdpforecaster",
+      "src_forecast_gdpforecaster_forecast",
+      "src_forecast_gdpforecaster_init",
+      "src_forecast_gdpforecaster_run",
+      "src_forecast_py_dataframe",
+      "src_forecast_rationale_1",
+      "src_forecast_rationale_127",
+      "src_forecast_rationale_15",
+      "src_forecast_rationale_18",
+      "src_forecast_rationale_28"
+    ],
+    "5": [
       "src_preprocess",
       "src_preprocess_gdppreprocessor",
       "src_preprocess_gdppreprocessor_init",
@@ -59,7 +87,7 @@
       "src_preprocess_rationale_22",
       "src_preprocess_rationale_67"
     ],
-    "4": [
+    "6": [
       "config",
       "database_db_connection",
       "database_db_connection_rationale_1",
@@ -70,7 +98,7 @@
       "src_load_database",
       "src_load_database_rationale_1"
     ],
-    "5": [
+    "7": [
       "src_train_model",
       "src_train_model_modeltrainer",
       "src_train_model_modeltrainer_init",
@@ -80,38 +108,40 @@
       "src_train_model_rationale_20",
       "src_train_model_rationale_24"
     ],
-    "6": [
+    "8": [
       "src_eda_edagenerator",
       "src_eda_edagenerator_generate_eda",
       "src_eda_edagenerator_init",
       "src_eda_rationale_14",
       "src_eda_rationale_22"
     ],
-    "7": [
+    "9": [
       "database_init",
       "database_init_rationale_1"
     ],
-    "8": [
+    "10": [
       "src_init",
       "src_init_rationale_1"
     ]
   },
   "cohesion": {
-    "0": 0.15441176470588236,
+    "0": 0.1568627450980392,
     "1": 0.19696969696969696,
-    "2": 0.21818181818181817,
-    "3": 0.2,
-    "4": 0.25,
-    "5": 0.25,
-    "6": 0.4,
-    "7": 1.0,
-    "8": 1.0
+    "2": 0.19696969696969696,
+    "3": 0.21818181818181817,
+    "4": 0.2,
+    "5": 0.2,
+    "6": 0.25,
+    "7": 0.25,
+    "8": 0.4,
+    "9": 1.0,
+    "10": 1.0
   },
   "gods": [
     {
-      "id": "src_forecast_gdpforecaster",
-      "label": "GDPForecaster",
-      "degree": 7
+      "id": "src_news_fetcher_newsfetcher",
+      "label": "NewsFetcher",
+      "degree": 9
     },
     {
       "id": "database_db_connection_databaseconnection",
@@ -122,6 +152,16 @@
       "id": "src_extract_data_gdpdataextractor",
       "label": "GDPDataExtractor",
       "degree": 6
+    },
+    {
+      "id": "app_render_news_section",
+      "label": "render_news_section()",
+      "degree": 6
+    },
+    {
+      "id": "src_forecast_gdpforecaster",
+      "label": "GDPForecaster",
+      "degree": 5
     },
     {
       "id": "src_load_database_databaseloader",
@@ -136,7 +176,7 @@
     {
       "id": "app_main",
       "label": "main()",
-      "degree": 4
+      "degree": 5
     },
     {
       "id": "src_eda_edagenerator",
@@ -147,16 +187,6 @@
       "id": "src_train_model_modeltrainer",
       "label": "ModelTrainer",
       "degree": 4
-    },
-    {
-      "id": "app_load_data",
-      "label": "load_data()",
-      "degree": 3
-    },
-    {
-      "id": "app_format_currency",
-      "label": "format_currency()",
-      "degree": 2
     }
   ],
   "surprises": [
@@ -172,22 +202,38 @@
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
     },
     {
-      "source": "main()",
-      "target": "GDPForecaster",
+      "source": "fetch_global_news()",
+      "target": "NewsFetcher",
       "source_files": [
         "app.py",
-        "src/forecast.py"
+        "src/news_fetcher.py"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
-      "why": "connects across different repos/directories"
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "fetch_country_news()",
+      "target": "NewsFetcher",
+      "source_files": [
+        "app.py",
+        "src/news_fetcher.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
     }
   ],
   "questions": [
     {
       "type": "bridge_node",
-      "question": "Why does `GDPDataExtractor` connect `Community 2` to `Community 4`?",
-      "why": "High betweenness centrality (0.227) - this node is a cross-community bridge."
+      "question": "Why does `GDPDataExtractor` connect `GDPDataExtractor` to `config.py`?",
+      "why": "High betweenness centrality (0.179) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `NewsFetcher` connect `NewsFetcher` to `app.py`?",
+      "why": "High betweenness centrality (0.164) - this node is a cross-community bridge."
     }
   ]
 }
