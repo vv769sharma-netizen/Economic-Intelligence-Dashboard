@@ -1,8 +1,12 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Base directory for the project
 BASE_DIR = Path(__file__).resolve().parent
+
+# Load environment variables from .env file if it exists
+load_dotenv(BASE_DIR / ".env")
 
 # Database configuration (with safe dev defaults)
 DB_HOST = os.environ.get("DB_HOST", "127.0.0.1")
@@ -17,20 +21,24 @@ WORLD_BANK_API_URL = "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.
 # NewsAPI Configuration
 # On Streamlit Cloud: set NEWS_API_KEY in App Settings > Secrets
 # Locally: set the NEWS_API_KEY environment variable or use a .env file
-def _get_news_api_key() -> str:
-    """Read the NewsAPI key from Streamlit secrets (Cloud) or env vars (local)."""
+def get_news_api_key() -> str:
+    """
+    Read the NewsAPI key lazily at call-time (not import-time).
+    This ensures Streamlit Cloud secrets are fully loaded before we read them.
+    """
     # Try Streamlit secrets first (works on Streamlit Cloud)
     try:
         import streamlit as st
-        key = st.secrets.get("NEWS_API_KEY", "")
-        if key:
-            return key
+        if hasattr(st, "secrets") and "NEWS_API_KEY" in st.secrets:
+            return st.secrets["NEWS_API_KEY"]
     except Exception:
         pass
     # Fall back to environment variable (works locally)
     return os.environ.get("NEWS_API_KEY", "")
 
-NEWS_API_KEY = _get_news_api_key()
+# Keep a module-level alias for backwards compatibility,
+# but callers in app.py should prefer get_news_api_key()
+NEWS_API_KEY = os.environ.get("NEWS_API_KEY", "")
 
 # Directories to auto-create
 DIRECTORIES = [

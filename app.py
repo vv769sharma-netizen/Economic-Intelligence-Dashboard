@@ -6,7 +6,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from datetime import datetime
-from config import BASE_DIR, NEWS_API_KEY
+from config import BASE_DIR, get_news_api_key
 from src.forecast import GDPForecaster
 from src.news_fetcher import NewsFetcher
 
@@ -157,14 +157,16 @@ def load_data():
 @st.cache_data(ttl=1800)  # Cache news for 30 minutes to respect API rate limits
 def fetch_global_news():
     """Cached wrapper for fetching global economic news."""
-    fetcher = NewsFetcher(NEWS_API_KEY)
+    api_key = get_news_api_key()
+    fetcher = NewsFetcher(api_key)
     return fetcher.fetch_global_economic_news(page_size=6)
 
 
 @st.cache_data(ttl=1800)  # Cache news for 30 minutes
 def fetch_country_news(country: str):
     """Cached wrapper for fetching country-specific economic news."""
-    fetcher = NewsFetcher(NEWS_API_KEY)
+    api_key = get_news_api_key()
+    fetcher = NewsFetcher(api_key)
     return fetcher.fetch_country_news(country, page_size=6)
 
 
@@ -177,7 +179,8 @@ def render_news_section(selected_country: str):
     st.markdown("---")
     st.markdown('<div class="news-section-header">📰 Economic News</div>', unsafe_allow_html=True)
 
-    if not NEWS_API_KEY:
+    api_key = get_news_api_key()
+    if not api_key:
         st.markdown("""
         <div class="news-api-notice">
             <strong>📡 News API key not configured.</strong><br>
