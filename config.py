@@ -29,7 +29,13 @@ def get_news_api_key() -> str:
     # Try Streamlit secrets first (works on Streamlit Cloud)
     try:
         import streamlit as st
-        # Use .get() which is safer and supported by Streamlit's Secrets dict-like object
+        # If it's under an [api] block
+        if "api" in st.secrets and "NEWS_API_KEY" in st.secrets["api"]:
+            val = st.secrets["api"]["NEWS_API_KEY"]
+            if val:
+                return val
+        
+        # If it's at the root level
         val = st.secrets.get("NEWS_API_KEY")
         if val:
             return val
