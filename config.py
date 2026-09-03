@@ -29,10 +29,13 @@ def get_news_api_key() -> str:
     # Try Streamlit secrets first (works on Streamlit Cloud)
     try:
         import streamlit as st
-        if hasattr(st, "secrets") and "NEWS_API_KEY" in st.secrets:
-            return st.secrets["NEWS_API_KEY"]
-    except Exception:
-        pass
+        # Use .get() which is safer and supported by Streamlit's Secrets dict-like object
+        val = st.secrets.get("NEWS_API_KEY")
+        if val:
+            return val
+    except Exception as e:
+        print(f"DEBUG: Error reading st.secrets: {e}")
+        
     # Fall back to environment variable (works locally)
     return os.environ.get("NEWS_API_KEY", "")
 
