@@ -183,13 +183,11 @@ def render_news_section(selected_country: str):
     if not api_key:
         st.markdown("""
         <div class="news-api-notice">
-            <strong>📡 News API key not configured.</strong><br>
-            To enable live news, get a free API key at
-            <a href="https://newsapi.org/register" target="_blank">newsapi.org/register</a>
-            (100 requests/day free), then set the environment variable:<br><br>
-            <code>set NEWS_API_KEY=your_key_here</code> &nbsp; (Windows CMD)<br>
-            <code>$env:NEWS_API_KEY="your_key_here"</code> &nbsp; (PowerShell)<br><br>
-            Then relaunch Streamlit.
+            <strong>📡 GNews API key not configured.</strong><br>
+            To enable live news on Streamlit Cloud, get a free API key at
+            <a href="https://gnews.io/" target="_blank">gnews.io</a>
+            (100 requests/day free), then set it in your Streamlit Cloud Secrets:<br><br>
+            <code>NEWS_API_KEY = "your_key_here"</code><br><br>
         </div>
         """, unsafe_allow_html=True)
         return
