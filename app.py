@@ -201,28 +201,34 @@ def render_news_section(selected_country: str):
 
     with tab_global:
         with st.spinner("Loading global economic news..."):
-            articles = fetch_global_news()
-
-        if not articles:
-            st.info("No global economic news found right now. Try again shortly.")
-        else:
-            # 3-column grid
-            cols = st.columns(3)
-            for i, article in enumerate(articles):
-                with cols[i % 3]:
-                    render_news_card(article)
+            try:
+                articles = fetch_global_news()
+                
+                if not articles:
+                    st.info("No global economic news found right now. Try again shortly.")
+                else:
+                    # 3-column grid
+                    cols = st.columns(3)
+                    for i, article in enumerate(articles):
+                        with cols[i % 3]:
+                            render_news_card(article)
+            except Exception as e:
+                st.error(f"Failed to load global news. API Error: {e}")
 
     with tab_country:
         with st.spinner(f"Loading news for {selected_country}..."):
-            country_articles = fetch_country_news(selected_country)
-
-        if not country_articles:
-            st.info(f"No recent economic news found for **{selected_country}**. Try selecting a major economy or widen your search.")
-        else:
-            cols = st.columns(3)
-            for i, article in enumerate(country_articles):
-                with cols[i % 3]:
-                    render_news_card(article)
+            try:
+                country_articles = fetch_country_news(selected_country)
+                
+                if not country_articles:
+                    st.info(f"No recent economic news found for **{selected_country}**. Try selecting a major economy or widen your search.")
+                else:
+                    cols = st.columns(3)
+                    for i, article in enumerate(country_articles):
+                        with cols[i % 3]:
+                            render_news_card(article)
+            except Exception as e:
+                st.error(f"Failed to load country news. API Error: {e}")
 
 
 # ---------------------------------------------------------------------------

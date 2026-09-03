@@ -61,18 +61,11 @@ class NewsFetcher:
             "apiKey": self.api_key,
         }
 
-        try:
-            response = requests.get(NEWSAPI_ENDPOINT, params=params, timeout=self.timeout)
-            response.raise_for_status()
-            data = response.json()
-            articles = data.get("articles", [])
-            return [a for a in articles if a.get("title") and a["title"] != "[Removed]"]
-        except requests.exceptions.RequestException as e:
-            logging.error(f"Failed to fetch global economic news: {e}")
-            return []
-        except ValueError as e:
-            logging.error(f"Failed to parse NewsAPI JSON response: {e}")
-            return []
+        response = requests.get(NEWSAPI_ENDPOINT, params=params, timeout=self.timeout)
+        response.raise_for_status()
+        data = response.json()
+        articles = data.get("articles", [])
+        return [a for a in articles if a.get("title") and a["title"] != "[Removed]"]
 
     def fetch_country_news(self, country: str, page_size: int = 6) -> List[Dict]:
         """
@@ -100,15 +93,8 @@ class NewsFetcher:
             "apiKey": self.api_key,
         }
 
-        try:
-            response = requests.get(NEWSAPI_ENDPOINT, params=params, timeout=self.timeout)
-            response.raise_for_status()
-            data = response.json()
-            articles = data.get("articles", [])
-            return [a for a in articles if a.get("title") and a["title"] != "[Removed]"]
-        except requests.exceptions.RequestException as e:
-            logging.error(f"Failed to fetch news for {country}: {e}")
-            return []
-        except ValueError as e:
-            logging.error(f"Failed to parse NewsAPI JSON response: {e}")
-            return []
+        response = requests.get(NEWSAPI_ENDPOINT, params=params, timeout=self.timeout)
+        response.raise_for_status()
+        data = response.json()
+        articles = data.get("articles", [])
+        return [a for a in articles if a.get("title") and a["title"] != "[Removed]"]
